@@ -9,71 +9,52 @@ import { useRouter } from "next/navigation";
 import styles from "../page.module.css";
 import axios from "axios";
 
-const SignupSchema = Yup.object().shape({
-  fullName: Yup.string()
-    .min(2, "Too Short!")
-    .max(50, "Too Long!")
-    .required("Required"),
+const LoginSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
-  password: Yup.string()
-    .required("Required")
-    .matches(/[A-Z]/, "Must Contain One Uppercase character"),
-  rePassword: Yup.string()
-    .required("Required")
-    .oneOf([Yup.ref("password")], "Passwords does not match"),
+  password: Yup.string().required("Required"),
 });
 
-const Register = () => {
+const Login = () => {
   const router = useRouter();
 
-  const handleRegister = async (values) => {
+  const handleLogin = async (values) => {
     try {
       const { data, status } = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/register`,
+        `${process.env.NEXT_PUBLIC_API_URL}/login`,
         values
       );
       if (status === 201) {
         toast.success(data.msg);
-          router.push("/login");
+        router.push("/");
       } else {
         toast.error(data.msg);
       }
     } catch (err) {
-      toast.error("Failed to register!");
+      toast.error("Failed to login!");
     }
   };
 
   return (
     <div className={styles.signupContainer}>
-      <h1>Signup</h1>
+      <h1>Login</h1>
       <Formik
         initialValues={{
-          fullName: "",
           email: "",
           password: "",
-          rePassword: "",
         }}
-        validationSchema={SignupSchema}
+        validationSchema={LoginSchema}
         onSubmit={(values, { resetForm }) => {
-          handleRegister(values);
+          handleLogin(values);
           resetForm();
         }}
       >
         {({ errors, touched }) => (
           <Form className={styles.form}>
-            <Field name="fullName" />
-            {errors.fullName && touched.fullName ? (
-              <div>{errors.fullName}</div>
-            ) : null}
             <Field name="email" type="email" />
             {errors.email && touched.email ? <div>{errors.email}</div> : null}
             <Field name="password" type="password" />
             {errors.password && touched.password ? (
               <div>{errors.password}</div>
-            ) : null}
-            <Field name="rePassword" type="password" />
-            {errors.rePassword && touched.rePassword ? (
-              <div>{errors.rePassword}</div>
             ) : null}
             <button type="submit">Submit</button>
           </Form>
@@ -83,4 +64,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;
