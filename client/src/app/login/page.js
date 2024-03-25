@@ -57,6 +57,9 @@ const Login = () => {
               <div>{errors.password}</div>
             ) : null}
             <button type="submit">Submit</button>
+            <dir>
+              Don't have an account? <Link href="/register">Create new.</Link>
+            </dir>
           </Form>
         )}
       </Formik>

@@ -34,7 +34,7 @@ const Register = () => {
       );
       if (status === 201) {
         toast.success(data.msg);
-          router.push("/login");
+        router.push("/login");
       } else {
         toast.error(data.msg);
       }
@@ -76,6 +76,9 @@ const Register = () => {
               <div>{errors.rePassword}</div>
             ) : null}
             <button type="submit">Submit</button>
+            <div>
+              Already have an account? <Link href="/login">Login</Link>
+            </div>
           </Form>
         )}
       </Formik>

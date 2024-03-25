@@ -1,4 +1,12 @@
-.signupContainer{
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 80px;
+  background-color: rgb(242, 242, 242);
+}
+
+.signupContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -6,9 +14,7 @@
   justify-content: center;
 }
 
-
-
-.form{
+.form {
   width: 30%;
   display: flex;
   flex-direction: column;
