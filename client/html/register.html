@@ -24,18 +24,26 @@
     <main>
         <section>
             <div class="container d-flex flex-column align-items-center gap-4 py-5">
-                <h2 class="fs-1">Login</h2>
+                <h2 class="fs-1">Sign Up</h2>
                 <form class="d-flex flex-column align-items-center gap-3 p-4 login-form">
                     <div class="d-flex flex-column gap-1 w-100">
+                        <label for="name">Full Name</label>
+                        <input class="form-control w-100" type="text" name="name" id="name">
+                    </div>
+                    <div class="d-flex flex-column gap-1 w-100">
                         <label for="email">Email</label>
-                        <input class="form-control w-100" type="text" name="email" id="email">
+                        <input class="form-control w-100" type="email" name="email" id="email">
                     </div>
                     <div class="d-flex flex-column gap-1 w-100">
                         <label for="password">Password</label>
                         <input class="form-control w-100" type="password" name="password" id="password">
                     </div>
-                    <input type="submit" value="Login" class="btn btn-primary"></input>
-                    <p>Don't have an account? <a href="./register.html" class="fw-semibold">Create New</a></p>
+                    <div class="d-flex flex-column gap-1 w-100">
+                        <label for="rePassword">Confirm Password</label>
+                        <input class="form-control w-100" type="password" name="rePassword" id="rePassword">
+                    </div>
+                    <input type="submit" value="Sign Up" class="btn btn-primary"></input>
+                    <p>Already have an account? <a href="./login.html" class="fw-semibold">Login</a></p>
                 </form>
             </div>
         </section>
