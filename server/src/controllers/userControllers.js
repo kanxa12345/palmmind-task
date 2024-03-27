@@ -64,4 +64,37 @@ const getUserById = async (req, res) => {
   }
 };
 
-module.exports = { registerNewUser, loginUser, gerAllUsers, getUserById };
+const changePassword = async (req, res) => {
+  try {
+    const existingUser = await User.findOne({ email: req.body.email });
+    if (existingUser) {
+      const matchedPassword = await bcrypt.compare(
+        req.body.oldPassword,
+        existingUser.password
+      );
+      if (matchedPassword) {
+        const hashNewPassword = await bcrypt.hash(
+          req.body.password,
+          saltRounds
+        );
+        existingUser.password = hashNewPassword;
+        await existingUser.save();
+        return res.status(201).json({ msg: "Password change successfully!" });
+      } else {
+        return res.status(403).json({ msg: "Password didn't match" });
+      }
+    } else {
+      return res.status(401).json({ msg: "Email did't match" });
+    }
+  } catch (err) {
+    res.status(400).json({ msg: "Fail to change password" });
+  }
+};
+
+module.exports = {
+  registerNewUser,
+  loginUser,
+  gerAllUsers,
+  getUserById,
+  changePassword,
+};
