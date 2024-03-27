@@ -1,3 +1,4 @@
+// user login form
 $("#loginForm").submit(async function (e) {
   e.preventDefault();
   const formDataObject = {};
@@ -7,7 +8,6 @@ $("#loginForm").submit(async function (e) {
   });
   const jsonData = JSON.stringify(formDataObject);
 
-  // Send form data to the backend using Axios
   try {
     const response = await axios.post("http://localhost:5000/login", jsonData, {
       headers: {
@@ -16,7 +16,7 @@ $("#loginForm").submit(async function (e) {
     });
     if (response.status === 201) {
       alert(response.data.msg);
-      // Optionally, redirect or show a success message
+      window.location.href = "./index.html";
       $("#loginForm")[0].reset();
     } else {
       console.error("Unexpected response:", response);
@@ -31,3 +31,24 @@ $("#loginForm").submit(async function (e) {
     }
   }
 });
+
+
+// for toggle password type
+
+const eye = $("#eye");
+const eyeSlash = $("#eyeSlash");
+const password = $("#password");
+
+eye.addClass("eye");
+
+const togglePassword = () => {
+  if (password[0].type === "password") {
+    password[0].type = "text";
+    eye.removeClass("eye");
+    eyeSlash.addClass("eye");
+  } else {
+    password[0].type = "password";
+    eye.addClass("eye");
+    eyeSlash.removeClass("eye");
+  }
+};

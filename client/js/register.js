@@ -1,10 +1,11 @@
+// user register form
 $("#registerForm").submit(async function (e) {
   e.preventDefault();
   let password = $("#password").val();
   let confirmPassword = $("#rePassword").val();
   if (password !== confirmPassword) {
     $("#passwordWarning").show();
-    return; // Stop form submission
+    return;
   } else {
     $("#passwordWarning").hide();
     const formDataObject = {};
@@ -16,7 +17,6 @@ $("#registerForm").submit(async function (e) {
     });
     const jsonData = JSON.stringify(formDataObject);
 
-    // Send form data to the backend using Axios
     try {
       const response = await axios.post(
         "http://localhost:5000/register",
@@ -29,7 +29,7 @@ $("#registerForm").submit(async function (e) {
       );
       if (response.status === 201) {
         alert(response.data.msg);
-        // Optionally, redirect or show a success message
+        window.location.href = "./login.html";
         $("#registerForm")[0].reset();
       } else {
         console.error("Unexpected response:", response);
@@ -44,3 +44,37 @@ $("#registerForm").submit(async function (e) {
     }
   }
 });
+
+// for toggle password type
+const eye = $("#eye");
+const eyeSlash = $("#eyeSlash");
+const password = $("#password");
+eye.addClass("eye");
+const togglePassword = () => {
+  if (password[0].type === "password") {
+    password[0].type = "text";
+    eye.removeClass("eye");
+    eyeSlash.addClass("eye");
+  } else {
+    password[0].type = "password";
+    eye.addClass("eye");
+    eyeSlash.removeClass("eye");
+  }
+};
+
+// for toggle confirm password type
+const eye1 = $("#eye1");
+const eyeSlash1 = $("#eyeSlash1");
+const rePassword = $("#rePassword");
+eye1.addClass("eye");
+const toggleConfirmPassword = () => {
+  if (rePassword[0].type === "password") {
+    rePassword[0].type = "text";
+    eye1.removeClass("eye");
+    eyeSlash1.addClass("eye");
+  } else {
+    rePassword[0].type = "password";
+    eye1.addClass("eye");
+    eyeSlash1.removeClass("eye");
+  }
+};
