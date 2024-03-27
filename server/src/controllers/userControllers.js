@@ -48,7 +48,7 @@ const loginUser = async (req, res) => {
 
 const gerAllUsers = async (req, res) => {
   try {
-    const userList = await User.findById();
+    const userList = await User.find();
     res.status(201).json({ userList });
   } catch (err) {
     res.status(400).json({ msg: "Failed to fetch user list" });
@@ -57,7 +57,7 @@ const gerAllUsers = async (req, res) => {
 
 const getUserById = async (req, res) => {
   try {
-    const userDetail = await User.find({ _id: req.params.userId });
+    const userDetail = await User.findById({ _id: req.params.userId });
     res.status(201).json({ userDetail });
   } catch (err) {
     res.status(400).json({ msg: "Failed to fetch user list" });

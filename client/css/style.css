@@ -14,3 +14,7 @@
 .eye::before {
   display: none;
 }
+
+.home-section {
+  height: 80vh;
+}
