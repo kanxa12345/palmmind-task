@@ -7,18 +7,17 @@ $(document).ready(() => {
     try {
       const { data } = await axios.get("http://localhost:5000/users");
       userList = data.userList;
-      displayUserList(userList); // Call function to display user list
+      displayUserList(userList);
     } catch (err) {
       console.log(err);
     }
   };
 
-  // Function to display user list in  table
+  // Function to display user list in table
   const displayUserList = (userList) => {
     const tableBody = $("#userTableBody");
     tableBody.empty();
 
-    // Iterate through the user list and create table rows
     if (userList.length > 0) {
       userList.forEach((user, id) => {
         const row = $("<tr></tr>");
@@ -26,8 +25,6 @@ $(document).ready(() => {
         const serialNo = $("<td></td>").text(id + 1);
         const fullNameCell = $("<td></td>").text(user.fullName);
         const emailCell = $("<td></td>").text(user.email);
-
-        // Append table cells to the table row
         row.append(serialNo, fullNameCell, emailCell);
 
         row.css("cursor", "pointer");
@@ -35,7 +32,6 @@ $(document).ready(() => {
           openModal(user);
         });
 
-        // Append table row to the table body
         tableBody.append(row);
       });
     } else {
@@ -51,7 +47,6 @@ $(document).ready(() => {
 
   // Function to open modal with user data
   const openModal = (user) => {
-    // Close the current modal if it exists
     if (currentModal) {
       currentModal.remove();
       currentModal = null;
@@ -94,15 +89,12 @@ $(document).ready(() => {
       gap: "4px",
     });
 
-    // Append content to the modal
     header.append(heading, crossBtn);
     body.append(fullName, email);
     modal.append(header, body);
 
-    // Append modal to the document body
     $("body").append(modal);
 
-    // Set current modal reference
     currentModal = modal;
 
     // Close modal when cross button is clicked
