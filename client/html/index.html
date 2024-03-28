@@ -21,10 +21,25 @@
         </nav>
     </header>
     <main>
-        <section class="py-5 d-flex align-items-center  home-section">
-            <div class="container d-flex flex-column align-items-center">
-                <h1 class="fw-bold">Login to see user lists</h1>
-                <a href="./login.html" class="btn btn-primary">Login</a>
+        <section class="py-5">
+            <div class="container d-flex flex-column align-items-start gap-2">
+                <div class="d-flex align-items-center justify-content-between w-100">
+                    <h2>User List</h2>
+                    <a href="./register.html" class="btn btn-success">Register User</a>
+                </div>
+                <div class="table-responsive w-100">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>S.N.</th>
+                                <th>Full Name</th>
+                                <th>Email</th>
+                            </tr>
+                        </thead>
+                        <tbody id="userTableBody">
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </section>
     </main>
@@ -34,8 +49,6 @@
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.1.1/redux.min.js"></script>
-    <script src="../redux/store.js"></script>
     <script src="../js/index.js"></script>
 </body>
 

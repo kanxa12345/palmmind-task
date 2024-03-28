@@ -17,9 +17,8 @@ $("#loginForm").submit(async function (e) {
     if (response.status === 201) {
       alert(response.data.msg);
       const { token, userDetail } = response.data;
-      store.dispatch({ type: "LOGIN", payload: { token, userDetail } });
-      // window.location.href = "./index.html";
-      // $("#loginForm")[0].reset();
+      window.location.href = "./index.html";
+      $("#loginForm")[0].reset();
     } else {
       console.error("Unexpected response:", response);
     }
@@ -54,13 +53,13 @@ const togglePassword = () => {
   }
 };
 
-$(document).ready(() => {
-  // Retrieve the persisted state from localStorage
-  const persistedStateJSON = localStorage.getItem("reduxState");
-  if (persistedStateJSON) {
-    const persistedState = JSON.parse(persistedStateJSON);
-    store.dispatch({ type: "REHYDRATE", payload: persistedState });
-  }
-  // Subscribe to the Redux store to listen for state changes
-  store.subscribe(updateUI);
-});
+// $(document).ready(() => {
+//   // Retrieve the persisted state from localStorage
+//   const persistedStateJSON = localStorage.getItem("reduxState");
+//   if (persistedStateJSON) {
+//     const persistedState = JSON.parse(persistedStateJSON);
+//     store.dispatch({ type: "REHYDRATE", payload: persistedState });
+//   }
+//   // Subscribe to the Redux store to listen for state changes
+//   store.subscribe();
+// });
