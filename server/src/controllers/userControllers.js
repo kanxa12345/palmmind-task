@@ -55,15 +55,6 @@ const gerAllUsers = async (req, res) => {
   }
 };
 
-const getUserById = async (req, res) => {
-  try {
-    const userDetail = await User.findById({ _id: req.params.userId });
-    res.status(201).json({ userDetail });
-  } catch (err) {
-    res.status(400).json({ msg: "Failed to fetch user list" });
-  }
-};
-
 const changePassword = async (req, res) => {
   try {
     const existingUser = await User.findOne({ email: req.body.email });
@@ -74,7 +65,7 @@ const changePassword = async (req, res) => {
       );
       if (matchedPassword) {
         const hashNewPassword = await bcrypt.hash(
-          req.body.password,
+          req.body.newPassword,
           saltRounds
         );
         existingUser.password = hashNewPassword;
@@ -95,6 +86,5 @@ module.exports = {
   registerNewUser,
   loginUser,
   gerAllUsers,
-  getUserById,
   changePassword,
 };

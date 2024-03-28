@@ -7,41 +7,42 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
     <link rel="stylesheet" href="../css/style.css">
     <title>Document</title>
 </head>
 
 <body>
     <header class="py-2 bg-body-tertiary">
-        <nav class="container navbar navbar-expand-lg ">
-            <a class="navbar-brand" href="./index.html">Logo</a>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <div class="d-flex ms-auto" role="search">
-                    <a href="./login.html" class="btn btn-primary">Login</a>
-                </div>
+        <nav class="navbar navbar-expand-lg ">
+            <div class="container">
+                <a class="navbar-brand" href="./index.html">Logo</a>
+                <a href="./login.html" class="btn btn-primary ms-auto" id="loginBtn">Login</a>
             </div>
         </nav>
     </header>
     <main>
         <section>
             <div class="container d-flex flex-column align-items-center gap-4 py-5">
-                <h2 class="fs-1">Sign Up</h2>
-                <form id="registerForm" class="d-flex flex-column align-items-center gap-3 p-4 login-form">
-                    <div class="d-flex flex-column gap-1 w-100">
-                        <label for="name">Full Name</label>
-                        <input class="form-control w-100" type="text" name="fullName" id="name" required>
-                    </div>
+                <h2 class="fs-1">Change Password</h2>
+                <form id="resetForm" class="d-flex flex-column align-items-center gap-3 p-4 login-form">
                     <div class="d-flex flex-column gap-1 w-100">
                         <label for="email">Email</label>
                         <input class="form-control w-100" type="email" name="email" id="email" required>
                     </div>
                     <div class="d-flex flex-column gap-1 w-100 position-relative">
-                        <label for="password">Password</label>
-                        <input class="form-control w-100" type="password" name="password" id="password" required>
-                        <span onclick="togglePassword()" class="position-absolute eye-button">
+                        <label for="oldPassword">Old Password</label>
+                        <input class="form-control w-100" type="password" name="oldPassword" id="oldPassword" required>
+                        <span onclick="toggleOldPassword()" class="position-absolute eye-button">
                             <i class="fa-solid fa-eye" id="eye"></i>
                             <i class="fa-solid fa-eye-slash" id="eyeSlash"></i>
+                        </span>
+                    </div>
+                    <div class="d-flex flex-column gap-1 w-100 position-relative">
+                        <label for="newPassword">New Password</label>
+                        <input class="form-control w-100" type="password" name="newPassword" id="newPassword" required>
+                        <span onclick="toggleNewPassword()" class="position-absolute eye-button">
+                            <i class="fa-solid fa-eye" id="eye1"></i>
+                            <i class="fa-solid fa-eye-slash" id="eyeSlash1"></i>
                         </span>
                     </div>
                     <div class="d-flex flex-column gap-1 w-100 position-relative">
@@ -52,12 +53,11 @@
                             Passwords does not
                             match!</p>
                         <span onclick="toggleConfirmPassword()" class="position-absolute eye-button">
-                            <i class="fa-solid fa-eye" id="eye1"></i>
-                            <i class="fa-solid fa-eye-slash" id="eyeSlash1"></i>
+                            <i class="fa-solid fa-eye" id="eye2"></i>
+                            <i class="fa-solid fa-eye-slash" id="eyeSlash2"></i>
                         </span>
                     </div>
-                    <input type="submit" value="Register" class="btn btn-primary"></input>
-                    <p>Already have an account? <a href="./login.html" class="fw-semibold">Login</a></p>
+                    <input type="submit" value="Submit" class="btn btn-primary"></input>
                 </form>
             </div>
         </section>
@@ -68,7 +68,7 @@
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="../js/register.js"></script>
+    <script src="../js/reset.js"></script>
 </body>
 
 </html>
