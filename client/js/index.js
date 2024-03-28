@@ -19,24 +19,34 @@ $(document).ready(() => {
     tableBody.empty();
 
     // Iterate through the user list and create table rows
-    userList.forEach((user, id) => {
-      const row = $("<tr></tr>");
-      // Create table cells for each user property
-      const serialNo = $("<td></td>").text(id + 1);
-      const fullNameCell = $("<td></td>").text(user.fullName);
-      const emailCell = $("<td></td>").text(user.email);
+    if (userList.length > 0) {
+      userList.forEach((user, id) => {
+        const row = $("<tr></tr>");
+        // Create table cells for each user property
+        const serialNo = $("<td></td>").text(id + 1);
+        const fullNameCell = $("<td></td>").text(user.fullName);
+        const emailCell = $("<td></td>").text(user.email);
 
-      // Append table cells to the table row
-      row.append(serialNo, fullNameCell, emailCell);
+        // Append table cells to the table row
+        row.append(serialNo, fullNameCell, emailCell);
 
-      row.css("cursor", "pointer");
-      row.click(() => {
-        openModal(user);
+        row.css("cursor", "pointer");
+        row.click(() => {
+          openModal(user);
+        });
+
+        // Append table row to the table body
+        tableBody.append(row);
       });
-
-      // Append table row to the table body
-      tableBody.append(row);
-    });
+    } else {
+      const message = $("<h2></h2>").text("Userlist is empty");
+      message.css({
+        fontWeight: "bold",
+        textAlign: "center",
+        paddingTop: "6px",
+      });
+      tableBody.append(message);
+    }
   };
 
   // Function to open modal with user data
